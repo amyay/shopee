@@ -1,0 +1,117 @@
+# Contact_Type and Enquiry_Type fields have to be filled for any ticket update
+notEmpty: [Contact_Type, Enquiry_Type]
+hide: [SG-Enquiry_Detail, ID-Enquiry_Detail, ID_Enquiry_Detail, SZ-Enquiry_Detail, TH-Enquiry_Detail, TW-Enquiry_Detail, VN-Enquiry_Detail, PH-Enquiry_Detail, MY-Enquiry_Detail, Reason, Order_ID, Shipping_ID, Withdrawal_ID, Current_User_Status, Listing_ID]
+
+conditions:
+
+# show Phone_Number field only when 'wechat' is selected in Contact_Type
+ - show: Phone_Number
+   when: [Contact_Type, '==', 'wechat']
+
+# show regional Lv2 fields depending on brand
+ - show: ID-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: SG-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: SZ-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: TH-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_TH'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: TW-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_TW'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: VN-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: PH-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+ - show: MY-Enquiry_Detail
+   when:
+   - [[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', ['__dc_account_fraud__', '__dc_payments__', '__dc_logistics__', '__dc_return_refund_order_cancellation__', '__dc_general_feedback_technical_issues__']]]
+
+
+#########################
+# level 3 - Reason - SG #
+#########################
+
+ - show: Reason
+   when: [Enquiry_Type, '!=', '']
+ - when: [[SG-Enquiry_Detail, '==', ''], [ID-Enquiry_Detail, '==', ''], [SZ-Enquiry_Detail, '==', ''], [TH-Enquiry_Detail, '==', ''], [TW-Enquiry_Detail, '==', ''], [VN-Enquiry_Detail, '==', ''], [PH-Enquiry_Detail, '==', ''], [MY-Enquiry_Detail, '==', '']]
+   showOptions: [Reason]
+
+### general enquiries ###
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_general_enquiries__']]]
+   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_buy_an_item_on_shopee__, __dc_how_do_i_use_shopee_coins__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_to_make_payment_using_bank_transfer__, __dc_how_to_make_payment_using_cod__, __dc_how_cancel_an_order__, __dc_how_to_request_for_return_refund__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_how_to_arrange_for_pickup__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
+
+### account & fraud ###
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   showOptions: [SG-Enquiry_Detail, sg_enquiry_detail_account, sg_enquiry_detail_fraud]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_account']]]
+   showOptions: [Reason, __dc_change_username__, __dc_change_mobile_number__, __dc_change_add_bank_acccount_information__, __dc_change_add_cc_information__, __dc_link_unlink_social_media_account__, __dc_notifications_management__, __dc_seller_shop_settings__, __dc_change_wallet_password_forgot_password__, __dc_change_login_password_forget_password__, __dc_account_deletion__]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud']]]
+   showOptions: [Reason, __dc_account_hacked__, __dc_login_limit_reached__, __dc_checkout_limit_reached__, __dc_confirmed_fraud__, __dc_acccount_banned_frozen__, __dc_device_credit_card_bank_account_banned__]
+
+
+### payment ###
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__']]]
+   showOptions: [SG-Enquiry_Detail, sg_enquiry_detail_wallet, sg_enquiry_detail_bank_transfer, sg_enquiry_detail_credit_card]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_wallet']]]
+   showOptions: [Reason, __dc_withdrawal_status_inquiry_withdrawal_processed_but_funds_not_received_in_bank_account__, __dc_withdrawal_canceled___wrong_ba__, __dc_withdrawal_canceled___fraud_unusual_actvity__, __dc_wrong_amount_added_to_wallet_non_shipping_fee_subsidy_related_wrong_amount_transferred_to_ba__, __dc_free_shipping_subsidy_adjustment__, __dc_order_canceled_in_system_but_item_is_delivered__, __dc_order_completed_but_settlement_not_yet_added_to_wallet_received_in_ba__, __dc_refund_request_approved_but_refund_not_yet_added_to_wallet_received_in_ba__]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_bank_transfer']]]
+   showOptions: [Reason, __dc_cannot_upload_receipt_system_issue__, __dc_no_receipt_lost_receipt__, __dc_invalid_proof__, __dc_overpayment_underpayment_double_payment_wrong_transfer__, __dc_paid_but_order_status_still_unpaid_canceled__, __dc_unable_to_transfer__]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_credit_card']]]
+   showOptions: [Reason, __dc_overpayment_underpayment_double_payment_wrong_transfer__, __dc_rejected_failed_authorization__, __dc_double_charged_repeated_authorization__, __dc_charged_but_order_status_unpaid_canceled__, __dc_cc_refund_not_received__]
+
+### logistics ###
+
+
+### Extra 5 custom fields ####
+ - show: Current_User_Status
+   when:
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_account'], [Reason, '==', '__dc_account_deletion__']]
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud']]
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_wallet'], [Reason, '==', '__dc_withdrawal_canceled___fraud_unusual_actvity__']]
+
+ - show: Order_ID
+   when:
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_wallet'], [Reason, '==', ['__dc_wrong_amount_added_to_wallet_non_shipping_fee_subsidy_related_wrong_amount_transferred_to_ba__', '__dc_free_shipping_subsidy_adjustment__', '__dc_order_canceled_in_system_but_item_is_delivered__', '__dc_order_completed_but_settlement_not_yet_added_to_wallet_received_in_ba__', '__dc_refund_request_approved_but_refund_not_yet_added_to_wallet_received_in_ba__']]]
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_bank_transfer'], [Reason, '==', ['__dc_cannot_upload_receipt_system_issue__', '__dc_no_receipt_lost_receipt__', '__dc_invalid_proof__', '__dc_paid_but_order_status_still_unpaid_canceled__', '__dc_unable_to_transfer__']]]
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_credit_card'], [Reason, '==', ['__dc_double_charged_repeated_authorization__', '__dc_charged_but_order_status_unpaid_canceled__', '__dc_cc_refund_not_received__']]]
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', ['sg_enquiry_detail_bank_transfer', sg_enquiry_detail_credit_card]], [Reason, '==', '__dc_overpayment_underpayment_double_payment_wrong_transfer__']]
+
+
+ - show: Withdrawal_ID
+   when:
+   - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_wallet'], [Reason, '==', ['__dc_withdrawal_status_inquiry_withdrawal_processed_but_funds_not_received_in_bank_account__', '__dc_withdrawal_canceled___wrong_ba__', '__dc_withdrawal_canceled___fraud_unusual_actvity__']]]
+
+ - show: Shipping_ID
+   when:
+   -
+
+
+
+############################
+# testing area
+# show / hide user groups
+# working!! do not touch
+############################
+ - when: ['user.groups', '*=', '33586467']
+   hideOptions: ['assignee', '36966668', '36966828']
+
