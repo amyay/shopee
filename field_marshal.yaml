@@ -80,6 +80,19 @@ conditions:
    showOptions: [Reason, __dc_overpayment_underpayment_double_payment_wrong_transfer__, __dc_rejected_failed_authorization__, __dc_double_charged_repeated_authorization__, __dc_charged_but_order_status_unpaid_canceled__, __dc_cc_refund_not_received__]
 
 ### logistics ###
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   showOptions: [SG-Enquiry_Detail, sg_enquiry_detail_crossboarder, sg_enquiry_detail_non-integrated, sg_enquiry_detail_ninjavan]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_logistics__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_crossboarder']]]
+   showOptions: [Reason, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_calculation__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_claims_for_lost_damaged__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__, __dc_shipment_campaign_sign_up__, __dc_claims_for_wrong_item_swap_order__]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_logistics__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_non-integrated']]]
+   showOptions: [Reason, __dc_3pl_pick_up_delayed__, __dc_re_arrange_pick_up__, __dc_cancel_pick_up_request__, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__]
+
+ - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_logistics__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_ninjavan']]]
+   showOptions: [Reason, __dc_3pl_pick_up_delayed__, __dc_re_arrange_pick_up__, __dc_cancel_pick_up_request__, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_expedite_rts_delivery_request__, __dc_other_3pl_service_issues__, __dc_shipping_fee_calculation__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_claims_for_lost_damaged__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__, __dc_shipment_campaign_sign_up__, __dc_claims_for_wrong_item_swap_order__]
+
+
 
 
 ### Extra 5 custom fields ####
@@ -95,7 +108,7 @@ conditions:
    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_bank_transfer'], [Reason, '==', ['__dc_cannot_upload_receipt_system_issue__', '__dc_no_receipt_lost_receipt__', '__dc_invalid_proof__', '__dc_paid_but_order_status_still_unpaid_canceled__', '__dc_unable_to_transfer__']]]
    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_credit_card'], [Reason, '==', ['__dc_double_charged_repeated_authorization__', '__dc_charged_but_order_status_unpaid_canceled__', '__dc_cc_refund_not_received__']]]
    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__'], [SG-Enquiry_Detail, '==', ['sg_enquiry_detail_bank_transfer', sg_enquiry_detail_credit_card]], [Reason, '==', '__dc_overpayment_underpayment_double_payment_wrong_transfer__']]
-
+   - [[Enquiry_Type, '==', '__dc_logistics__'], [Reason, '==', ['__dc_cancel_cod_order_request__', '__dc_3pl_pick_up_delayed__', '__dc_re_arrange_pick_up__', '__dc_cancel_pick_up_request__', '__dc_change_delivery_details__', '__dc_return_to_shipper_status_enquiry__', '__dc_expedite_rts_delivery_request__', '__dc_other_3pl_service_issues__', '__dc_shipping_fee_rebate__', '__dc_claims_for_lost_damaged__', '__dc_tracking_status_not_updated_issues__', '__dc_unable_to_input_tracking__', '__dc_impossible_to_ship_item_due_to_size_type__', '__dc_incorrect_cod_amount__', '__dc_claims_for_wrong_item_swap_order__']]]
 
  - show: Withdrawal_ID
    when:
@@ -103,7 +116,7 @@ conditions:
 
  - show: Shipping_ID
    when:
-   -
+   - [[Enquiry_Type, '==', '__dc_logistics__'], [Reason, '==', ['__dc_change_delivery_details__', '__dc_shipping_status_enquiry__', '__dc_expedite_delivery_request__', '__dc_re_delivery_request__', '__dc_return_to_shipper_status_enquiry__', '__dc_other_3pl_service_issues__', '__dc_tracking_status_not_updated_issues__', '__dc_unable_to_input_tracking__']]]
 
 
 
