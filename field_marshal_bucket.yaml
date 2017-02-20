@@ -1,0 +1,168 @@
+- show: Current_User_Status
+  when:
+  - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, '==', '__dc_account_deletion__']]
+  - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud']]
+
+
+    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, __dc_account_hacked__]]
+    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, __dc_login_limit_reached__]]
+    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, __dc_checkout_limit_reached__]]
+    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, __dc_confirmed_fraud__]]
+    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, __dc_acccount_banned_frozen__]]
+    - [[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__'], [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_fraud'], [Reason, __dc_device_credit_card_bank_account_banned__]]
+
+
+
+
+
+
+
+
+# show regional Lv2 fields depending on brand
+ - show: ID-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: SG-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: SZ-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: TH-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_TH'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_TH'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_TH'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_TH'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_TH'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: TW-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_TW'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_TW'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_TW'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_TW'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_TW'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: VN-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: PH-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+ - show: MY-Enquiry_Detail
+   when:
+   - [[[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
+   - [[[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', '__dc_payments__']]]
+   - [[[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', '__dc_logistics__']]]
+   - [[[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
+   - [[[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
+
+
+
+
+ - showOptions: [Group_SG-BD, Group_SG-Content]
+   when:
+   - [assignee.group.id, '==', '35774408']
+   - [assignee.group.id, '==', '33620348']
+#hideOptions: [assignee.group.id, '35774408', '33620348']
+
+
+Group_SG-BD: 33586407
+Group_SG-Content: 35774408
+Group_SG-Crossborder_CS: 33620348
+Group_SG-CS_Call_Team: 33586467
+Group_SG-CS_Email_Team: 33620388
+Group_SG-Disputes: 35755867
+Group_SG-Fraud: 35774448
+Group_SG-Legal: 35774468
+Group_SG-Logistics: 35755827
+Group_SG-Marketing: 35755907
+Group_SG-Payments: 35755847
+Group_SG-Product: 35755887
+
+
+
+
+
+Group_SG-BD
+Group_SG-Content
+Group_SG-Crossborder_CS
+Group_SG-CS_Call_Team
+Group_SG-CS_Email_Team
+Group_SG-Disputes
+Group_SG-Fraud
+Group_SG-Legal
+Group_SG-Logistics
+Group_SG-Marketing
+Group_SG-Payments
+Group_SG-Product
+
+
+
+# yes this is working!! do not touch
+ - when: ['user.groups', '*=', '33586467']
+   hideOptions: ['assignee', '36966668', '36966828']
+
+
+
+############################
+# show / hide user groups
+############################
+### ID ###
+ - when: ['user.groups', '*=', ['36966668', '36966828', '36966888', '36966988', '36954847', '36967148', '36967308', '36955107', '36955227', '36967488', '36955427', '36955547']]
+   showOptions: ['assignee', '36966668', '36966828', '36966888', '36966988', '36954847', '36967148', '36967308', '36955107', '36955227', '36967488', '36955427', '36955547']
+### MY ###
+ - when: ['user.groups', '*=', ['36966628', '36966788', '36954607', '36954727', '36967028', '36967088', '36967208', '36955007', '36955167', '36955287', '36967588', '36955467']]
+   showOptions: ['assignee', '36966628', '36966788', '36954607', '36954727', '36967028', '36967088', '36967208', '36955007', '36955167', '36955287', '36967588', '36955467']
+
+### PH ###
+ - when: ['user.groups', '*=', ['36954407', '36954487', '36966848', '36954747', '36954787', '36967108', '36967228', '36967348', '36955187', '36967468', '36955387', '36955487']]
+   showOptions: ['assignee', '36954407', '36954487', '36966848', '36954747', '36954787', '36967108', '36967228', '36967348', '36955187', '36967468', '36955387', '36955487']
+
+### SG ###
+ - when: ['user.groups', '*=', ['33586407', '35774408', '33620348', '33586467', '33620388', '35755867', '35774448', '35774468', '35755827', '35755907', '35755847', '35755887']]
+   showOptions: ['assignee', '33586407', '35774408', '33620348', '33586467', '33620388', '35755867', '35774448', '35774468', '35755827', '35755907', '35755847', '35755887']
+
+### SZ ###
+ - when: ['user.groups', '*=', ['36966728', '36954587', '36954687', '36967168', '36954987', '36955147', '36967388', '36967508', '36967628']]
+   showOptions: ['assignee', '36966728', '36954587', '36954687', '36967168', '36954987', '36955147', '36967388', '36967508', '36967628']
+
+### TH ###
+
+
+
+- when: ['user.groups', '*=', []]
+   showOptions: ['assignee', ]
+
+
+- when: ['user.groups', '*=', []]
+   showOptions: ['assignee', ]
+
+
+- when: ['user.groups', '*=', []]
+   showOptions: ['assignee', ]
+
+
+
+
+- when: ['user.groups', '*=', []]
+   showOptions: ['assignee', ]

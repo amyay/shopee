@@ -8,6 +8,10 @@ conditions:
  - show: Phone_Number
    when: [Contact_Type, '==', 'wechat']
 
+# hide fields for brand "Shopee Regional"
+ - hide: [priority, Contact_Type, Enquiry_Type, Escalation]
+   when: [brand, '==', Brand_Shopee_Regional]
+
 # show regional Lv2 fields depending on brand
  - show: ID-Enquiry_Detail
    when:
@@ -102,6 +106,12 @@ conditions:
    - [VN-Enquiry_Detail, '==', 'vn_enquiry_detail_wallet']
    showOptions: [Reason, __dc_withdrawal_status_inquiry_withdrawal_processed_but_funds_not_received_in_bank_account__, __dc_withdrawal_canceled___wrong_ba__, __dc_withdrawal_canceled___fraud_unusual_actvity__, __dc_wrong_amount_added_to_wallet_non_shipping_fee_subsidy_related_wrong_amount_transferred_to_ba__, __dc_free_shipping_subsidy_adjustment__, __dc_order_canceled_in_system_but_item_is_delivered__, __dc_order_completed_but_settlement_not_yet_added_to_wallet_received_in_ba__, __dc_refund_request_approved_but_refund_not_yet_added_to_wallet_received_in_ba__]
 
+### logistics  - crossborder (SG, MY, PH only) ###
+ - when:
+   - [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_crossboarder']
+   - [MY-Enquiry_Detail, '==', 'my_enquiry_detail_crossboarder']
+   - [PH-Enquiry_Detail, '==', 'ph_enquiry_detail_crossboarder']
+   showOptions: [Reason, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_calculation__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_claims_for_lost_damaged__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__, __dc_shipment_campaign_sign_up__, __dc_claims_for_wrong_item_swap_order__]
 
 ### Return / Refund & Order Cancellation ###
  - when:
@@ -202,8 +212,7 @@ conditions:
  - when: [[[brand, '==', 'Brand_Shopee_SG'], [Enquiry_Type, '==', '__dc_logistics__']]]
    showOptions: [SG-Enquiry_Detail, sg_enquiry_detail_crossboarder, sg_enquiry_detail_non-integrated, sg_enquiry_detail_ninjavan]
 
- - when: [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_crossboarder']
-   showOptions: [Reason, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_calculation__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_claims_for_lost_damaged__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__, __dc_shipment_campaign_sign_up__, __dc_claims_for_wrong_item_swap_order__]
+### logistics - crossborder : taken care of in the above section ###
 
  - when: [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_non-integrated']
    showOptions: [Reason, __dc_3pl_pick_up_delayed__, __dc_re_arrange_pick_up__, __dc_cancel_pick_up_request__, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__]
@@ -284,8 +293,7 @@ conditions:
  - when: [[[brand, '==', 'Brand_Shopee_MY'], [Enquiry_Type, '==', '__dc_logistics__']]]
    showOptions: [MY-Enquiry_Detail, my_enquiry_detail_crossboarder, my_enquiry_detail_non-integrated, my_enquiry_detail_poslaju]
 
- - when: [MY-Enquiry_Detail, '==', 'my_enquiry_detail_crossboarder']
-   showOptions: [Reason, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_calculation__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_claims_for_lost_damaged__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__, __dc_shipment_campaign_sign_up__, __dc_claims_for_wrong_item_swap_order__]
+### logistics - crossborder : taken care of in the above section ###
 
  - when: [MY-Enquiry_Detail, '==', 'my_enquiry_detail_non-integrated']
    showOptions: [Reason, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__]
@@ -328,8 +336,7 @@ conditions:
  - when: [[[brand, '==', 'Brand_Shopee_PH'], [Enquiry_Type, '==', '__dc_logistics__']]]
    showOptions: [PH-Enquiry_Detail, ph_enquiry_detail_crossboarder, ph_enquiry_detail_non-integrated, ph_enquiry_detail_lbc, ph_enquiry_detail_black_arrow]
 
- - when: [PH-Enquiry_Detail, '==', 'ph_enquiry_detail_crossboarder']
-   showOptions: [Reason, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_calculation__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_claims_for_lost_damaged__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__, __dc_impossible_to_ship_item_due_to_size_type__, __dc_shipment_campaign_sign_up__, __dc_claims_for_wrong_item_swap_order__]
+### logistics - crossborder : taken care of in the above section ###
 
  - when: [PH-Enquiry_Detail, '==', 'ph_enquiry_detail_non-integrated']
    showOptions: [Reason, __dc_3pl_pick_up_delayed__, __dc_re_arrange_pick_up__, __dc_cancel_pick_up_request__, __dc_change_delivery_details__, __dc_shipping_status_enquiry__, __dc_expedite_delivery_request__, __dc_re_delivery_request__, __dc_return_to_shipper_status_enquiry__, __dc_shipping_fee_rebate__, __dc_shipping_fee_rebate_t_c_enquiry__, __dc_shipping_settings__, __dc_tracking_status_not_updated_issues__, __dc_unable_to_input_tracking__, __dc_duplicate_awb_tracking__]
@@ -546,3 +553,4 @@ conditions:
  - show: Listing_ID
    when:
    - [Reason, '==', ['__dc_ip_infringement__', '__dc_banned_deleted_listing_appeal__', '__dc_report_listing__', '__dc_listing_status__', '__dc_remove_negative_comment_rating__']]
+
