@@ -59,18 +59,7 @@ conditions:
    - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '!=', ['Brand_Shopee_VN', 'Brand_Shopee_ID', 'Brand_Shopee_SZ']]]
    showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_buy_an_item_on_shopee__, __dc_how_do_i_use_shopee_coins__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_to_make_payment_using_bank_transfer__, __dc_how_to_make_payment_using_cod__, __dc_how_cancel_an_order__, __dc_how_to_request_for_return_refund__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_how_to_arrange_for_pickup__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
 
-# take care of odd cases in VN, ID, SZ
- - when:
-   - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '==', 'Brand_Shopee_VN']]
-   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_buy_an_item_on_shopee__, __dc_how_do_i_use_shopee_coins__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_to_make_payment_using_cod__, __dc_how_cancel_an_order__, __dc_how_to_request_for_return_refund__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_how_to_arrange_for_pickup__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
-
- - when:
-   - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '==', 'Brand_Shopee_ID']]
-   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_buy_an_item_on_shopee__, __dc_how_do_i_use_shopee_coins__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_to_make_payment_using_bank_transfer__, __dc_how_cancel_an_order__, __dc_how_to_request_for_return_refund__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
-
- - when:
-   - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '==', 'Brand_Shopee_SZ']]
-   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_cancel_an_order__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
+# take care of odd cases in VN, ID, SZ below
 
 ### account & fraud ####
  - when:
@@ -105,6 +94,8 @@ conditions:
    - [TW-Enquiry_Detail, '==', 'tw_enquiry_detail_wallet']
    - [VN-Enquiry_Detail, '==', 'vn_enquiry_detail_wallet']
    showOptions: [Reason, __dc_withdrawal_status_inquiry_withdrawal_processed_but_funds_not_received_in_bank_account__, __dc_withdrawal_canceled___wrong_ba__, __dc_withdrawal_canceled___fraud_unusual_actvity__, __dc_wrong_amount_added_to_wallet_non_shipping_fee_subsidy_related_wrong_amount_transferred_to_ba__, __dc_free_shipping_subsidy_adjustment__, __dc_order_canceled_in_system_but_item_is_delivered__, __dc_order_completed_but_settlement_not_yet_added_to_wallet_received_in_ba__, __dc_refund_request_approved_but_refund_not_yet_added_to_wallet_received_in_ba__]
+
+# take care of odd cases in SZ below
 
 ### logistics  - crossborder (SG, MY, PH only) ###
  - when:
@@ -145,12 +136,7 @@ conditions:
    - [VN-Enquiry_Detail, '==', ['vn_enquiry_detail_damaged', 'vn_enquiry_detail_wrong_item']]
    showOptions: [Reason,  __dc_dispute_supporting_documents_received__, __dc_dispute_request_for_supporting_documents__, __dc_cancel_return_refund_request__, __dc_seller_did_not_receive_returned_order__, __dc_shopee_guarantee_expired_order_completed__, __dc_check_on_dispute_status__]
 
-# take care of odd cases in SZ
- - when: [SZ-Enquiry_Detail, '==', 'sz_enquiry_detail_non-receipt']
-   showOptions: [Reason, __dc_dispute_supporting_documents_received__, __dc_cancel_return_refund_request__, __dc_shopee_guarantee_expired_order_completed__, __dc_check_on_dispute_status__]
-
- - when: [SZ-Enquiry_Detail, '==', ['sz_enquiry_detail_damaged', 'sz_enquiry_detail_wrong_item']]
-   showOptions: [Reason,  __dc_dispute_supporting_documents_received__, __dc_cancel_return_refund_request__, __dc_seller_did_not_receive_returned_order__, __dc_shopee_guarantee_expired_order_completed__, __dc_check_on_dispute_status__]
+# take care of odd cases in SZ below
 
 ### General Feedback / Technical Issues ###
  - when:
@@ -162,9 +148,8 @@ conditions:
    - [TW-Enquiry_Detail, '==', 'tw_enquiry_detail_feedback']
    - [VN-Enquiry_Detail, '==', 'vn_enquiry_detail_feedback']
    showOptions: [Reason, __dc_feedback_on_buyers__, __dc_feedback_on_sellers__, __dc_feedback_on_shopee_policies_community_rules__, __dc_feedback_on_app_performance__, __dc_suggestions_and_requests_for_features__, __dc_feedback_on_marketing_activities__]
-# take care of odd cases in SZ
- - when: [SZ-Enquiry_Detail, '==', 'sz_enquiry_detail_feedback']
-   showOptions: [Reason, __dc_feedback_on_sellers__, __dc_feedback_on_shopee_policies_community_rules__, __dc_feedback_on_app_performance__, __dc_suggestions_and_requests_for_features__, __dc_feedback_on_marketing_activities__]
+
+# take care of odd cases in SZ below
 
  - when:
    - [SG-Enquiry_Detail, '==', 'sg_enquiry_detail_technical_issues']
@@ -231,6 +216,11 @@ conditions:
 #########################
 # level 3 - Reason - ID #
 #########################
+
+### general enquiries ###
+ - when:
+   - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '==', 'Brand_Shopee_ID']]
+   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_buy_an_item_on_shopee__, __dc_how_do_i_use_shopee_coins__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_to_make_payment_using_bank_transfer__, __dc_how_cancel_an_order__, __dc_how_to_request_for_return_refund__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
 
 ### account & fraud ###
  - when: [[[brand, '==', 'Brand_Shopee_ID'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
@@ -356,6 +346,11 @@ conditions:
 # level 3 - Reason - SZ #
 #########################
 
+### general enquiries ###
+ - when:
+   - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '==', 'Brand_Shopee_SZ']]
+   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_cancel_an_order__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
+
 ### account & fraud ###
  - when: [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
    showOptions: [SZ-Enquiry_Detail, sz_enquiry_detail_account, sz_enquiry_detail_fraud]
@@ -390,9 +385,19 @@ conditions:
  - when: [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_return_refund_order_cancellation__']]]
    showOptions: [SZ-Enquiry_Detail, sz_enquiry_detail_order_cancellation, sz_enquiry_detail_non-receipt, sz_enquiry_detail_damaged, sz_enquiry_detail_wrong_item]
 
+ - when: [SZ-Enquiry_Detail, '==', 'sz_enquiry_detail_non-receipt']
+   showOptions: [Reason, __dc_dispute_supporting_documents_received__, __dc_cancel_return_refund_request__, __dc_shopee_guarantee_expired_order_completed__, __dc_check_on_dispute_status__]
+
+ - when: [SZ-Enquiry_Detail, '==', ['sz_enquiry_detail_damaged', 'sz_enquiry_detail_wrong_item']]
+   showOptions: [Reason,  __dc_dispute_supporting_documents_received__, __dc_cancel_return_refund_request__, __dc_seller_did_not_receive_returned_order__, __dc_shopee_guarantee_expired_order_completed__, __dc_check_on_dispute_status__]
+
 ### General Feedback / Technical Issues ###
  - when: [[[brand, '==', 'Brand_Shopee_SZ'], [Enquiry_Type, '==', '__dc_general_feedback_technical_issues__']]]
    showOptions: [SZ-Enquiry_Detail, sz_enquiry_detail_feedback, sz_enquiry_detail_technical_issues]
+
+ - when: [SZ-Enquiry_Detail, '==', 'sz_enquiry_detail_feedback']
+   showOptions: [Reason, __dc_feedback_on_sellers__, __dc_feedback_on_shopee_policies_community_rules__, __dc_feedback_on_app_performance__, __dc_suggestions_and_requests_for_features__, __dc_feedback_on_marketing_activities__]
+
 
 #########################
 # level 3 - Reason - TH #
@@ -494,6 +499,11 @@ conditions:
 #########################
 # level 3 - Reason - VN #
 #########################
+
+### general enquiries ###
+ - when:
+   - [[Enquiry_Type, '==', '__dc_general_enquiries__'], [brand, '==', 'Brand_Shopee_VN']]
+   showOptions: [Reason, __dc_what_is_shopee__, __dc_what_is_shopee_guarantee__, __dc_what_payment_methods_are_supported_on_shopee__, __dc_how_do_i_buy_an_item_on_shopee__, __dc_how_do_i_use_shopee_coins__, __dc_how_do_i_start_selling_on_shopee__, __dc_listing_guidelines__, __dc_how_to_create_an_account__, __dc_how_to_withdraw_from_shopee_wallet__, __dc_how_to_make_payment_using_cod__, __dc_how_cancel_an_order__, __dc_how_to_request_for_return_refund__, __dc_how_to_handle_receiving_a_return_refund_request__, __dc_how_to_arrange_for_pickup__, __dc_order_payments_related__, __dc_shipping_delivery_related__, __dc_returns_refunds_related__, __dc_selling_billing_related__, __dc_account_safety_related__, __dc_others__ ]
 
 ### account & fraud ###
  - when: [[[brand, '==', 'Brand_Shopee_VN'], [Enquiry_Type, '==', '__dc_account_fraud__']]]
