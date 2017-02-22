@@ -1,5 +1,5 @@
 # Contact_Type and Enquiry_Type fields have to be filled for any ticket update
-notEmpty: [Contact_Type, Enquiry_Type]
+notEmpty: [Contact_Type, Enquiry_Type, Reason]
 hide: [SG-Enquiry_Detail, ID-Enquiry_Detail, ID_Enquiry_Detail, SZ-Enquiry_Detail, TH-Enquiry_Detail, TW-Enquiry_Detail, VN-Enquiry_Detail, PH-Enquiry_Detail, MY-Enquiry_Detail, Reason, Order_ID, Shipping_ID, Withdrawal_ID, Current_User_Status, Listing_ID, Phone_Number]
 
 conditions:
